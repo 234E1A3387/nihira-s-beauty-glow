@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Services</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: Poppins;
+  background: url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9") no-repeat center/cover;
+}
+
+/* Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(0,0,0,0.7);
+}
+
+/* Logo Section */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.logo h2 {
+  color: #ffb6c1;
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  margin: 0;
+}
+
+/* Links */
+.navbar a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  color: white;
+}
+
+/* ✅ FIXED GRID (2 per row) */
+.services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  gap: 20px;
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.card h3 {
+  text-align: center;
+  color: white;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Pages */
+.page {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+/* Glass Box */
+.service-box {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 20px;
+  width: 350px;
+}
+
+/* Items */
+.service-item {
+  background: rgba(255,255,255,0.2);
+  margin: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.service-item:hover {
+  background: #ff4d6d;
+  transform: scale(1.05);
+}
+
+/* Back button */
+.back-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #ff4d6d;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  
+  <div class="logo">
+    <img src="./logo.png">
+    <h2>Nihira’s Beauty Glow</h2>
+  </div>
+
+  <div>
+    <a href="home.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="booking.html">Book Here</a>
+  </div>
+
+</div>
+
+<!-- MAIN SERVICES -->
+<div id="main">
+  <h1>Our Premium Services ✨</h1>
+
+  <div class="services">
+
+    <div class="card" onclick="openPage('beauty')">
+      <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348">
+      <h3>Beauty</h3>
+    </div>
+
+    <div class="card" onclick="openPage('makeup')">
+      <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796">
+      <h3>Makeup</h3>
+    </div>
+
+    <div class="card" onclick="openPage('hair')">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e">
+      <h3>Hair</h3>
+    </div>
+
+    <div class="card" onclick="openPage('nail')">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371">
+      <h3>Nail Art</h3>
+    </div>
+
+  </div>
+</div>
+
+<!-- BEAUTY PAGE -->
+<div id="beauty" class="page" style="background:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348') center/cover;">
+  <div class="service-box">
+    <h1>Beauty Services 💄</h1>
+
+    <div class="service-item">Facial – ₹500</div>
+    <div class="service-item">Eyebrow – ₹50</div>
+    <div class="service-item">Threading – ₹70</div>
+    <div class="service-item">Pedicure – ₹600</div>
+    <div class="service-item">Manicure – ₹500</div>
+
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+</div>
+
+<!-- MAKEUP PAGE -->
+<div id="makeup" class="page" style="background:url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796') center/cover;">
+  <div class="service-box">
+    <h1>Makeup 💅</h1>
+
+    <div class="service-item">Plain Makeup – ₹1000</div>
+    <div class="service-item">Dewy Makeup – ₹1500</div>
+    <div class="service-item">Matte Makeup – ₹1800</div>
+    <div class="service-item">HD Makeup – ₹2500</div>
+    <div class="service-item">Bridal Makeup – ₹8000</div>
+
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+</div>
+
+<!-- HAIR PAGE -->
+<div id="hair" class="page" style="background:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e') center/cover;">
+  <div class="service-box">
+    <h1>Hair Services 💇</h1>
+
+    <div class="service-item">Smoothening</div>
+    <div class="service-item">Straightening</div>
+    <div class="service-item">Hair Color</div>
+    <div class="service-item">Blow Dry</div>
+
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+</div>
+
+<!-- NAIL PAGE -->
+<div id="nail" class="page" style="background:url('https://images.unsplash.com/photo-1604654894610-df63bc536371') center/cover;">
+  <div class="service-box">
+    <h1>Nail Art 💅</h1>
+
+    <div class="service-item">Gel Extension</div>
+    <div class="service-item">Shaping</div>
+    <div class="service-item">Removal</div>
+
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+</div>
+
+<script>
+function openPage(page) {
+  document.getElementById("main").style.display = "none";
+  document.querySelectorAll(".page").forEach(p => p.style.display = "none");
+  document.getElementById(page).style.display = "flex";
+}
+
+function goBack() {
+  document.getElementById("main").style.display = "block";
+  document.querySelectorAll(".page").forEach(p => p.style.display = "none");
+}
+</script>
+
+</body>
+</html>

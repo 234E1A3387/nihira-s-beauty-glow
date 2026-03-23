@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9") no-repeat center center/cover;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  width: 300px;
+  margin: 80px auto;
+  border-radius: 10px;
+  text-align: center;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px;
+}
+
+button {
+  padding: 10px;
+  background: pink;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar {
+  background: #ff4d6d;
+  padding: 15px;
+}
+
+.navbar a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}

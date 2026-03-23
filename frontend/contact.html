@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact Us</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: Poppins;
+  background: url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9") no-repeat center/cover;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(0,0,0,0.7);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.logo h2 {
+  color: #ffb6c1;
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  margin: 0;
+}
+
+.navbar a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+
+.contact-box {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 20px;
+  width: 350px;
+  text-align: center;
+  color: white;
+}
+
+input, textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 8px;
+  border: none;
+  border-radius: 8px;
+}
+
+button {
+  padding: 10px 20px;
+  background: #ff4d6d;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+button:hover {
+  background: #e63956;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <div class="logo">
+    <img src="./logo.png">
+    <h2>Nihira’s Beauty Glow</h2>
+  </div>
+
+  <div>
+    <a href="home.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="booking.html">Book Here</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="contact-box">
+
+    <h2>Contact Us 📞</h2>
+
+    <p>📧 rahinireddyk@gmail.com</p>
+    <p>📱 9876543210</p>
+    <p>📍 Cuddapah</p>
+
+    <input type="text" id="name" placeholder="Your Name">
+    <input type="email" id="email" placeholder="Your Email">
+    <textarea id="message" placeholder="Your Message"></textarea>
+
+    <button onclick="sendMsg()">Send Message</button>
+
+  </div>
+</div>
+
+<script>
+function sendMsg() {
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const msg = document.getElementById("message");
+
+  if (!name.value || !email.value || !msg.value) {
+    alert("Please fill all fields ❗");
+    return;
+  }
+
+  // ✅ Simulated success (no backend, no email)
+  alert("Message sent successfully ✅");
+
+  // clear fields
+  name.value = "";
+  email.value = "";
+  msg.value = "";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - Beauty Glow</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9") no-repeat center/cover;
+  padding-top: 80px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(0,0,0,0.6);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.logo h2 {
+  color: #ffb6c1;
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  margin: 0;
+}
+
+.navbar a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.hero {
+  text-align: center;
+  color: white;
+  margin-top: 150px;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-box {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 320px;
+  color: white;
+}
+
+input, select {
+  width: 90%;
+  padding: 10px;
+  margin: 8px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background: #ff4d6d;
+  color: white;
+}
+
+.close-btn {
+  background: gray;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <div class="logo">
+    <img src="./logo.png">
+    <h2>Nihira’s Beauty Glow</h2>
+  </div>
+
+  <div>
+    <a href="home.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="#" id="bookBtn">Book Here</a>
+  </div>
+</div>
+
+<div class="hero">
+  <h1>Enhancing Your Natural Beauty ✨</h1>
+</div>
+
+<div id="popup" class="popup">
+  <div class="popup-box">
+
+    <h2>Book Your Glow ✨</h2>
+
+    <input type="text" id="name" placeholder="Name">
+
+    <select id="category">
+      <option value="">Select Category</option>
+      <option value="beauty">Beauty</option>
+      <option value="makeup">Makeup</option>
+      <option value="hair">Hair</option>
+      <option value="nail">Nail Art</option>
+    </select>
+
+    <select id="service">
+      <option value="">Select Service</option>
+    </select>
+
+    <input type="date" id="date">
+    <input type="time" id="time">
+    <input type="text" id="phone" placeholder="Phone">
+
+    <button class="submit-btn" onclick="book()">Book Now</button>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+
+  </div>
+</div>
+
+<script>
+// ✅ OPEN POPUP
+document.getElementById("bookBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+  document.getElementById("popup").style.display = "flex";
+});
+
+// ✅ CLOSE POPUP
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+// ✅ SERVICES DATA
+const servicesData = {
+  beauty: ["Facial ₹500", "Eyebrow ₹50", "Threading ₹70"],
+  makeup: ["Plain Makeup ₹1000", "Dewy ₹1500"],
+  hair: ["Smoothening", "Straightening"],
+  nail: ["Gel Extension", "Extension Removal"]
+};
+
+// ✅ CATEGORY CHANGE
+document.getElementById("category").addEventListener("change", function () {
+
+  const serviceDropdown = document.getElementById("service");
+  const selected = this.value;
+
+  serviceDropdown.innerHTML = '<option value="">Select Service</option>';
+
+  if (servicesData[selected]) {
+    servicesData[selected].forEach(service => {
+      const option = document.createElement("option");
+      option.value = service;
+      option.textContent = service;
+      serviceDropdown.appendChild(option);
+    });
+  }
+});
+
+// 🌐 IMPORTANT: YOUR BACKEND URL HERE
+const API_URL = "https://your-backend.onrender.com";  // 🔴 CHANGE THIS
+
+// ✅ BOOK FUNCTION
+function book() {
+
+  const name = document.getElementById("name").value;
+  const category = document.getElementById("category").value;
+  const service = document.getElementById("service").value;
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+  const phone = document.getElementById("phone").value;
+
+  if (!name || !category || !service || !date || !time || !phone) {
+    alert("Fill all fields ❗");
+    return;
+  }
+
+  fetch(`${API_URL}/api/bookings`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name,
+      category,
+      service,
+      date,
+      time,
+      phone
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+
+    alert(data.message || "Booking Successful ✅");
+
+    // clear fields
+    document.getElementById("name").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("time").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("category").value = "";
+    document.getElementById("service").innerHTML = '<option value="">Select Service</option>';
+
+    document.getElementById("popup").style.display = "none";
+
+  })
+  .catch(err => {
+    console.log(err);
+    alert("Server not reachable ❌");
+  });
+}
+</script>
+</body>
+</html>
